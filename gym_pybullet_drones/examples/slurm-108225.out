@@ -1,0 +1,1101 @@
+Using conda at: /home/pl217/miniconda3/condabin/conda
+Python interpreter: /home/pl217/miniconda3/envs/drones/bin/python
+CUDA available: True
+GPU device count: 1
+GPU device name: NVIDIA L40S
+[INFO] Using device: cuda
+
+[INFO] Creating training environments...
+[INFO] BaseAviary.__init__() loaded parameters from the drone's .urdf:
+[INFO] m 0.027000, L 0.039700,
+[INFO] ixx 0.000014, iyy 0.000014, izz 0.000022,
+[INFO] kf 0.000000, km 0.000000,
+[INFO] t2w 2.250000, max_speed_kmh 30.000000,
+[INFO] gnd_eff_coeff 11.368590, prop_radius 0.023135,
+[INFO] drag_xy_coeff 0.000001, drag_z_coeff 0.000001,
+[INFO] dw_coeff_1 2267.180000, dw_coeff_2 0.160000, dw_coeff_3 -0.110000
+[INFO] BaseAviary.__init__() loaded parameters from the drone's .urdf:
+[INFO] m 0.027000, L 0.039700,
+[INFO] ixx 0.000014, iyy 0.000014, izz 0.000022,
+[INFO] kf 0.000000, km 0.000000,
+[INFO] t2w 2.250000, max_speed_kmh 30.000000,
+[INFO] gnd_eff_coeff 11.368590, prop_radius 0.023135,
+[INFO] drag_xy_coeff 0.000001, drag_z_coeff 0.000001,
+[INFO] dw_coeff_1 2267.180000, dw_coeff_2 0.160000, dw_coeff_3 -0.110000
+[INFO] BaseAviary.__init__() loaded parameters from the drone's .urdf:
+[INFO] m 0.027000, L 0.039700,
+[INFO] ixx 0.000014, iyy 0.000014, izz 0.000022,
+[INFO] kf 0.000000, km 0.000000,
+[INFO] t2w 2.250000, max_speed_kmh 30.000000,
+[INFO] gnd_eff_coeff 11.368590, prop_radius 0.023135,
+[INFO] drag_xy_coeff 0.000001, drag_z_coeff 0.000001,
+[INFO] dw_coeff_1 2267.180000, dw_coeff_2 0.160000, dw_coeff_3 -0.110000
+[INFO] BaseAviary.__init__() loaded parameters from the drone's .urdf:
+[INFO] m 0.027000, L 0.039700,
+[INFO] ixx 0.000014, iyy 0.000014, izz 0.000022,
+[INFO] kf 0.000000, km 0.000000,
+[INFO] t2w 2.250000, max_speed_kmh 30.000000,
+[INFO] gnd_eff_coeff 11.368590, prop_radius 0.023135,
+[INFO] drag_xy_coeff 0.000001, drag_z_coeff 0.000001,
+[INFO] dw_coeff_1 2267.180000, dw_coeff_2 0.160000, dw_coeff_3 -0.110000
+[INFO] Pursuer action space: Box(-1.0, 1.0, (3,), float32)
+[INFO] Pursuer observation space: Box([-inf -inf   0. -inf -inf -inf -inf -inf -inf -inf -inf -inf  -1.  -1.
+  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.
+  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.
+  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.
+  -1. -inf -inf -inf   0.], [inf inf inf inf inf inf inf inf inf inf inf inf  1.  1.  1.  1.  1.  1.
+  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.
+  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.
+  1.  1.  1. inf inf inf inf], (61,), float32)
+[INFO] Evader action space: Box(-1.0, 1.0, (3,), float32)
+[INFO] Evader observation space: Box([-inf -inf   0. -inf -inf -inf -inf -inf -inf -inf -inf -inf  -1.  -1.
+  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.
+  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.
+  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.
+  -1. -inf -inf -inf   0.], [inf inf inf inf inf inf inf inf inf inf inf inf  1.  1.  1.  1.  1.  1.
+  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.
+  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.
+  1.  1.  1. inf inf inf inf], (61,), float32)
+Using cuda device
+Using cuda device
+
+[INFO] Training phase 1/5
+
+[INFO] Training pursuer model...
+
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 8.55     |
+|    ep_rew_mean     | 4.96     |
+| time/              |          |
+|    fps             | 83       |
+|    iterations      | 1        |
+|    time_elapsed    | 24       |
+|    total_timesteps | 2048     |
+---------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 9           |
+|    ep_rew_mean          | 5.22        |
+| time/                   |             |
+|    fps                  | 79          |
+|    iterations           | 2           |
+|    time_elapsed         | 51          |
+|    total_timesteps      | 4096        |
+| train/                  |             |
+|    approx_kl            | 0.010200989 |
+|    clip_fraction        | 0.157       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -4.25       |
+|    explained_variance   | -0.153      |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.436       |
+|    n_updates            | 10          |
+|    policy_gradient_loss | -0.02       |
+|    std                  | 0.998       |
+|    value_loss           | 1.27        |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8.2         |
+|    ep_rew_mean          | 4.75        |
+| time/                   |             |
+|    fps                  | 78          |
+|    iterations           | 3           |
+|    time_elapsed         | 77          |
+|    total_timesteps      | 6144        |
+| train/                  |             |
+|    approx_kl            | 0.008796056 |
+|    clip_fraction        | 0.149       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -4.25       |
+|    explained_variance   | 0.146       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.271       |
+|    n_updates            | 20          |
+|    policy_gradient_loss | -0.0181     |
+|    std                  | 0.998       |
+|    value_loss           | 1.09        |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 76          |
+|    iterations           | 4           |
+|    time_elapsed         | 107         |
+|    total_timesteps      | 8192        |
+| train/                  |             |
+|    approx_kl            | 0.010522002 |
+|    clip_fraction        | 0.175       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -4.25       |
+|    explained_variance   | 0.356       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.235       |
+|    n_updates            | 30          |
+|    policy_gradient_loss | -0.022      |
+|    std                  | 0.997       |
+|    value_loss           | 0.931       |
+-----------------------------------------
+------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 8            |
+|    ep_rew_mean          | 4.63         |
+| time/                   |              |
+|    fps                  | 75           |
+|    iterations           | 5            |
+|    time_elapsed         | 135          |
+|    total_timesteps      | 10240        |
+| train/                  |              |
+|    approx_kl            | 0.0102113765 |
+|    clip_fraction        | 0.187        |
+|    clip_range           | 0.15         |
+|    entropy_loss         | -4.24        |
+|    explained_variance   | 0.449        |
+|    learning_rate        | 0.0003       |
+|    loss                 | 0.255        |
+|    n_updates            | 40           |
+|    policy_gradient_loss | -0.0233      |
+|    std                  | 0.993        |
+|    value_loss           | 0.781        |
+------------------------------------------
+
+[INFO] Training evader model...
+
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 9.06     |
+|    ep_rew_mean     | 3.81     |
+| time/              |          |
+|    fps             | 90       |
+|    iterations      | 1        |
+|    time_elapsed    | 22       |
+|    total_timesteps | 2048     |
+---------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 9.3         |
+|    ep_rew_mean          | 3.91        |
+| time/                   |             |
+|    fps                  | 87          |
+|    iterations           | 2           |
+|    time_elapsed         | 47          |
+|    total_timesteps      | 4096        |
+| train/                  |             |
+|    approx_kl            | 0.012626263 |
+|    clip_fraction        | 0.0983      |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -4.25       |
+|    explained_variance   | 0.0406      |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.308       |
+|    n_updates            | 10          |
+|    policy_gradient_loss | -0.0212     |
+|    std                  | 0.995       |
+|    value_loss           | 0.708       |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 9.13        |
+|    ep_rew_mean          | 3.86        |
+| time/                   |             |
+|    fps                  | 82          |
+|    iterations           | 3           |
+|    time_elapsed         | 74          |
+|    total_timesteps      | 6144        |
+| train/                  |             |
+|    approx_kl            | 0.014356112 |
+|    clip_fraction        | 0.141       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -4.24       |
+|    explained_variance   | 0.629       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.187       |
+|    n_updates            | 20          |
+|    policy_gradient_loss | -0.0278     |
+|    std                  | 0.991       |
+|    value_loss           | 0.428       |
+-----------------------------------------
+---------------------------------------
+| rollout/                |           |
+|    ep_len_mean          | 9.89      |
+|    ep_rew_mean          | 4.16      |
+| time/                   |           |
+|    fps                  | 83        |
+|    iterations           | 4         |
+|    time_elapsed         | 97        |
+|    total_timesteps      | 8192      |
+| train/                  |           |
+|    approx_kl            | 0.0184736 |
+|    clip_fraction        | 0.192     |
+|    clip_range           | 0.2       |
+|    entropy_loss         | -4.21     |
+|    explained_variance   | 0.698     |
+|    learning_rate        | 0.0003    |
+|    loss                 | 0.0488    |
+|    n_updates            | 30        |
+|    policy_gradient_loss | -0.0374   |
+|    std                  | 0.977     |
+|    value_loss           | 0.364     |
+---------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 9.98        |
+|    ep_rew_mean          | 4.21        |
+| time/                   |             |
+|    fps                  | 83          |
+|    iterations           | 5           |
+|    time_elapsed         | 122         |
+|    total_timesteps      | 10240       |
+| train/                  |             |
+|    approx_kl            | 0.019037148 |
+|    clip_fraction        | 0.201       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -4.17       |
+|    explained_variance   | 0.7         |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.141       |
+|    n_updates            | 40          |
+|    policy_gradient_loss | -0.0378     |
+|    std                  | 0.967       |
+|    value_loss           | 0.384       |
+-----------------------------------------
+
+[INFO] Training phase 2/5
+
+[INFO] Training pursuer model...
+
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 8        |
+|    ep_rew_mean     | 4.63     |
+| time/              |          |
+|    fps             | 110      |
+|    iterations      | 1        |
+|    time_elapsed    | 18       |
+|    total_timesteps | 2048     |
+---------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 86          |
+|    iterations           | 2           |
+|    time_elapsed         | 47          |
+|    total_timesteps      | 4096        |
+| train/                  |             |
+|    approx_kl            | 0.010736146 |
+|    clip_fraction        | 0.187       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -4.21       |
+|    explained_variance   | 0.548       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.438       |
+|    n_updates            | 60          |
+|    policy_gradient_loss | -0.0234     |
+|    std                  | 0.981       |
+|    value_loss           | 0.992       |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 81          |
+|    iterations           | 3           |
+|    time_elapsed         | 75          |
+|    total_timesteps      | 6144        |
+| train/                  |             |
+|    approx_kl            | 0.010295482 |
+|    clip_fraction        | 0.21        |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -4.2        |
+|    explained_variance   | 0.534       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.835       |
+|    n_updates            | 70          |
+|    policy_gradient_loss | -0.0248     |
+|    std                  | 0.979       |
+|    value_loss           | 1.24        |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 86          |
+|    iterations           | 4           |
+|    time_elapsed         | 94          |
+|    total_timesteps      | 8192        |
+| train/                  |             |
+|    approx_kl            | 0.011767745 |
+|    clip_fraction        | 0.243       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -4.17       |
+|    explained_variance   | 0.555       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.513       |
+|    n_updates            | 80          |
+|    policy_gradient_loss | -0.0287     |
+|    std                  | 0.968       |
+|    value_loss           | 1.22        |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 87          |
+|    iterations           | 5           |
+|    time_elapsed         | 117         |
+|    total_timesteps      | 10240       |
+| train/                  |             |
+|    approx_kl            | 0.010269456 |
+|    clip_fraction        | 0.214       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -4.14       |
+|    explained_variance   | 0.57        |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.318       |
+|    n_updates            | 90          |
+|    policy_gradient_loss | -0.0272     |
+|    std                  | 0.957       |
+|    value_loss           | 1.26        |
+-----------------------------------------
+
+[INFO] Training evader model...
+
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 10.4     |
+|    ep_rew_mean     | 4.39     |
+| time/              |          |
+|    fps             | 112      |
+|    iterations      | 1        |
+|    time_elapsed    | 18       |
+|    total_timesteps | 2048     |
+---------------------------------
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 10.9       |
+|    ep_rew_mean          | 4.56       |
+| time/                   |            |
+|    fps                  | 97         |
+|    iterations           | 2          |
+|    time_elapsed         | 42         |
+|    total_timesteps      | 4096       |
+| train/                  |            |
+|    approx_kl            | 0.01473679 |
+|    clip_fraction        | 0.171      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | -4.1       |
+|    explained_variance   | 0.775      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 0.0708     |
+|    n_updates            | 60         |
+|    policy_gradient_loss | -0.034     |
+|    std                  | 0.945      |
+|    value_loss           | 0.288      |
+----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 10.9        |
+|    ep_rew_mean          | 4.58        |
+| time/                   |             |
+|    fps                  | 92          |
+|    iterations           | 3           |
+|    time_elapsed         | 66          |
+|    total_timesteps      | 6144        |
+| train/                  |             |
+|    approx_kl            | 0.015995461 |
+|    clip_fraction        | 0.142       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -4.06       |
+|    explained_variance   | 0.723       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.0654      |
+|    n_updates            | 70          |
+|    policy_gradient_loss | -0.0311     |
+|    std                  | 0.926       |
+|    value_loss           | 0.397       |
+-----------------------------------------
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 10.7       |
+|    ep_rew_mean          | 4.5        |
+| time/                   |            |
+|    fps                  | 90         |
+|    iterations           | 4          |
+|    time_elapsed         | 90         |
+|    total_timesteps      | 8192       |
+| train/                  |            |
+|    approx_kl            | 0.01732204 |
+|    clip_fraction        | 0.156      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | -4.01      |
+|    explained_variance   | 0.747      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 0.0903     |
+|    n_updates            | 80         |
+|    policy_gradient_loss | -0.0357    |
+|    std                  | 0.917      |
+|    value_loss           | 0.362      |
+----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 11.2        |
+|    ep_rew_mean          | 4.7         |
+| time/                   |             |
+|    fps                  | 91          |
+|    iterations           | 5           |
+|    time_elapsed         | 112         |
+|    total_timesteps      | 10240       |
+| train/                  |             |
+|    approx_kl            | 0.019647773 |
+|    clip_fraction        | 0.223       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -3.98       |
+|    explained_variance   | 0.772       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.0527      |
+|    n_updates            | 90          |
+|    policy_gradient_loss | -0.0444     |
+|    std                  | 0.907       |
+|    value_loss           | 0.327       |
+-----------------------------------------
+
+[INFO] Training phase 3/5
+
+[INFO] Training pursuer model...
+
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 8        |
+|    ep_rew_mean     | 4.63     |
+| time/              |          |
+|    fps             | 96       |
+|    iterations      | 1        |
+|    time_elapsed    | 21       |
+|    total_timesteps | 2048     |
+---------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 84          |
+|    iterations           | 2           |
+|    time_elapsed         | 48          |
+|    total_timesteps      | 4096        |
+| train/                  |             |
+|    approx_kl            | 0.012091186 |
+|    clip_fraction        | 0.239       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -4.08       |
+|    explained_variance   | 0.53        |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.552       |
+|    n_updates            | 110         |
+|    policy_gradient_loss | -0.03       |
+|    std                  | 0.941       |
+|    value_loss           | 1.33        |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 80          |
+|    iterations           | 3           |
+|    time_elapsed         | 76          |
+|    total_timesteps      | 6144        |
+| train/                  |             |
+|    approx_kl            | 0.011681687 |
+|    clip_fraction        | 0.219       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -4.05       |
+|    explained_variance   | 0.511       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.52        |
+|    n_updates            | 120         |
+|    policy_gradient_loss | -0.0284     |
+|    std                  | 0.93        |
+|    value_loss           | 1.44        |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 81          |
+|    iterations           | 4           |
+|    time_elapsed         | 100         |
+|    total_timesteps      | 8192        |
+| train/                  |             |
+|    approx_kl            | 0.011202466 |
+|    clip_fraction        | 0.229       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -4.03       |
+|    explained_variance   | 0.371       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.424       |
+|    n_updates            | 130         |
+|    policy_gradient_loss | -0.0255     |
+|    std                  | 0.926       |
+|    value_loss           | 1.49        |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 85          |
+|    iterations           | 5           |
+|    time_elapsed         | 119         |
+|    total_timesteps      | 10240       |
+| train/                  |             |
+|    approx_kl            | 0.011079268 |
+|    clip_fraction        | 0.244       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -4.01       |
+|    explained_variance   | 0.517       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.935       |
+|    n_updates            | 140         |
+|    policy_gradient_loss | -0.0307     |
+|    std                  | 0.916       |
+|    value_loss           | 1.56        |
+-----------------------------------------
+
+[INFO] Training evader model...
+
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 11.5     |
+|    ep_rew_mean     | 4.82     |
+| time/              |          |
+|    fps             | 100      |
+|    iterations      | 1        |
+|    time_elapsed    | 20       |
+|    total_timesteps | 2048     |
+---------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 11.8        |
+|    ep_rew_mean          | 4.94        |
+| time/                   |             |
+|    fps                  | 96          |
+|    iterations           | 2           |
+|    time_elapsed         | 42          |
+|    total_timesteps      | 4096        |
+| train/                  |             |
+|    approx_kl            | 0.019309133 |
+|    clip_fraction        | 0.207       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -3.9        |
+|    explained_variance   | 0.818       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.0999      |
+|    n_updates            | 110         |
+|    policy_gradient_loss | -0.0404     |
+|    std                  | 0.881       |
+|    value_loss           | 0.316       |
+-----------------------------------------
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 12         |
+|    ep_rew_mean          | 5.03       |
+| time/                   |            |
+|    fps                  | 96         |
+|    iterations           | 3          |
+|    time_elapsed         | 63         |
+|    total_timesteps      | 6144       |
+| train/                  |            |
+|    approx_kl            | 0.01653166 |
+|    clip_fraction        | 0.199      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | -3.87      |
+|    explained_variance   | 0.864      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 0.0804     |
+|    n_updates            | 120        |
+|    policy_gradient_loss | -0.0384    |
+|    std                  | 0.875      |
+|    value_loss           | 0.239      |
+----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 12.4        |
+|    ep_rew_mean          | 5.19        |
+| time/                   |             |
+|    fps                  | 96          |
+|    iterations           | 4           |
+|    time_elapsed         | 84          |
+|    total_timesteps      | 8192        |
+| train/                  |             |
+|    approx_kl            | 0.015091244 |
+|    clip_fraction        | 0.177       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -3.82       |
+|    explained_variance   | 0.901       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.00517     |
+|    n_updates            | 130         |
+|    policy_gradient_loss | -0.0384     |
+|    std                  | 0.859       |
+|    value_loss           | 0.205       |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 12.6        |
+|    ep_rew_mean          | 5.24        |
+| time/                   |             |
+|    fps                  | 97          |
+|    iterations           | 5           |
+|    time_elapsed         | 105         |
+|    total_timesteps      | 10240       |
+| train/                  |             |
+|    approx_kl            | 0.016312934 |
+|    clip_fraction        | 0.187       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -3.77       |
+|    explained_variance   | 0.927       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.0121      |
+|    n_updates            | 140         |
+|    policy_gradient_loss | -0.0405     |
+|    std                  | 0.844       |
+|    value_loss           | 0.138       |
+-----------------------------------------
+
+[INFO] Training phase 4/5
+
+[INFO] Training pursuer model...
+
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 8        |
+|    ep_rew_mean     | 4.63     |
+| time/              |          |
+|    fps             | 83       |
+|    iterations      | 1        |
+|    time_elapsed    | 24       |
+|    total_timesteps | 2048     |
+---------------------------------
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 8          |
+|    ep_rew_mean          | 4.63       |
+| time/                   |            |
+|    fps                  | 78         |
+|    iterations           | 2          |
+|    time_elapsed         | 52         |
+|    total_timesteps      | 4096       |
+| train/                  |            |
+|    approx_kl            | 0.01208489 |
+|    clip_fraction        | 0.264      |
+|    clip_range           | 0.15       |
+|    entropy_loss         | -3.96      |
+|    explained_variance   | 0.524      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 0.33       |
+|    n_updates            | 160        |
+|    policy_gradient_loss | -0.0306    |
+|    std                  | 0.902      |
+|    value_loss           | 1.5        |
+----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 76          |
+|    iterations           | 3           |
+|    time_elapsed         | 80          |
+|    total_timesteps      | 6144        |
+| train/                  |             |
+|    approx_kl            | 0.012174922 |
+|    clip_fraction        | 0.26        |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -3.94       |
+|    explained_variance   | 0.547       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.98        |
+|    n_updates            | 170         |
+|    policy_gradient_loss | -0.0308     |
+|    std                  | 0.902       |
+|    value_loss           | 1.61        |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 78          |
+|    iterations           | 4           |
+|    time_elapsed         | 104         |
+|    total_timesteps      | 8192        |
+| train/                  |             |
+|    approx_kl            | 0.012686977 |
+|    clip_fraction        | 0.273       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -3.92       |
+|    explained_variance   | 0.554       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.668       |
+|    n_updates            | 180         |
+|    policy_gradient_loss | -0.0335     |
+|    std                  | 0.891       |
+|    value_loss           | 1.4         |
+-----------------------------------------
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 8          |
+|    ep_rew_mean          | 4.63       |
+| time/                   |            |
+|    fps                  | 80         |
+|    iterations           | 5          |
+|    time_elapsed         | 126        |
+|    total_timesteps      | 10240      |
+| train/                  |            |
+|    approx_kl            | 0.01283797 |
+|    clip_fraction        | 0.271      |
+|    clip_range           | 0.15       |
+|    entropy_loss         | -3.89      |
+|    explained_variance   | 0.544      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 0.662      |
+|    n_updates            | 190        |
+|    policy_gradient_loss | -0.0344    |
+|    std                  | 0.882      |
+|    value_loss           | 1.47       |
+----------------------------------------
+
+[INFO] Training evader model...
+
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 12.8     |
+|    ep_rew_mean     | 5.33     |
+| time/              |          |
+|    fps             | 122      |
+|    iterations      | 1        |
+|    time_elapsed    | 16       |
+|    total_timesteps | 2048     |
+---------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 12.7        |
+|    ep_rew_mean          | 5.29        |
+| time/                   |             |
+|    fps                  | 106         |
+|    iterations           | 2           |
+|    time_elapsed         | 38          |
+|    total_timesteps      | 4096        |
+| train/                  |             |
+|    approx_kl            | 0.017416632 |
+|    clip_fraction        | 0.173       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -3.69       |
+|    explained_variance   | 0.923       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.0133      |
+|    n_updates            | 160         |
+|    policy_gradient_loss | -0.0347     |
+|    std                  | 0.825       |
+|    value_loss           | 0.196       |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 12.9        |
+|    ep_rew_mean          | 5.38        |
+| time/                   |             |
+|    fps                  | 102         |
+|    iterations           | 3           |
+|    time_elapsed         | 59          |
+|    total_timesteps      | 6144        |
+| train/                  |             |
+|    approx_kl            | 0.020479802 |
+|    clip_fraction        | 0.214       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -3.66       |
+|    explained_variance   | 0.932       |
+|    learning_rate        | 0.0003      |
+|    loss                 | -0.00533    |
+|    n_updates            | 170         |
+|    policy_gradient_loss | -0.039      |
+|    std                  | 0.816       |
+|    value_loss           | 0.15        |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 12.9        |
+|    ep_rew_mean          | 5.4         |
+| time/                   |             |
+|    fps                  | 99          |
+|    iterations           | 4           |
+|    time_elapsed         | 82          |
+|    total_timesteps      | 8192        |
+| train/                  |             |
+|    approx_kl            | 0.014296776 |
+|    clip_fraction        | 0.169       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -3.63       |
+|    explained_variance   | 0.953       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.0101      |
+|    n_updates            | 180         |
+|    policy_gradient_loss | -0.0344     |
+|    std                  | 0.806       |
+|    value_loss           | 0.0982      |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 13.4        |
+|    ep_rew_mean          | 5.57        |
+| time/                   |             |
+|    fps                  | 98          |
+|    iterations           | 5           |
+|    time_elapsed         | 103         |
+|    total_timesteps      | 10240       |
+| train/                  |             |
+|    approx_kl            | 0.020381464 |
+|    clip_fraction        | 0.21        |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -3.6        |
+|    explained_variance   | 0.853       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.0555      |
+|    n_updates            | 190         |
+|    policy_gradient_loss | -0.0371     |
+|    std                  | 0.8         |
+|    value_loss           | 0.272       |
+-----------------------------------------
+
+[INFO] Training phase 5/5
+
+[INFO] Training pursuer model...
+
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 8        |
+|    ep_rew_mean     | 4.63     |
+| time/              |          |
+|    fps             | 79       |
+|    iterations      | 1        |
+|    time_elapsed    | 25       |
+|    total_timesteps | 2048     |
+---------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 74          |
+|    iterations           | 2           |
+|    time_elapsed         | 55          |
+|    total_timesteps      | 4096        |
+| train/                  |             |
+|    approx_kl            | 0.013385721 |
+|    clip_fraction        | 0.282       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -3.83       |
+|    explained_variance   | 0.465       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.914       |
+|    n_updates            | 210         |
+|    policy_gradient_loss | -0.0348     |
+|    std                  | 0.867       |
+|    value_loss           | 1.87        |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 74          |
+|    iterations           | 3           |
+|    time_elapsed         | 82          |
+|    total_timesteps      | 6144        |
+| train/                  |             |
+|    approx_kl            | 0.012316877 |
+|    clip_fraction        | 0.263       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -3.81       |
+|    explained_variance   | 0.525       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.981       |
+|    n_updates            | 220         |
+|    policy_gradient_loss | -0.0335     |
+|    std                  | 0.858       |
+|    value_loss           | 1.89        |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 8           |
+|    ep_rew_mean          | 4.63        |
+| time/                   |             |
+|    fps                  | 74          |
+|    iterations           | 4           |
+|    time_elapsed         | 109         |
+|    total_timesteps      | 8192        |
+| train/                  |             |
+|    approx_kl            | 0.011158219 |
+|    clip_fraction        | 0.238       |
+|    clip_range           | 0.15        |
+|    entropy_loss         | -3.79       |
+|    explained_variance   | 0.452       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.878       |
+|    n_updates            | 230         |
+|    policy_gradient_loss | -0.0314     |
+|    std                  | 0.855       |
+|    value_loss           | 1.99        |
+-----------------------------------------
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 8          |
+|    ep_rew_mean          | 4.63       |
+| time/                   |            |
+|    fps                  | 74         |
+|    iterations           | 5          |
+|    time_elapsed         | 138        |
+|    total_timesteps      | 10240      |
+| train/                  |            |
+|    approx_kl            | 0.01280625 |
+|    clip_fraction        | 0.255      |
+|    clip_range           | 0.15       |
+|    entropy_loss         | -3.78      |
+|    explained_variance   | 0.538      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 1.07       |
+|    n_updates            | 240        |
+|    policy_gradient_loss | -0.0304    |
+|    std                  | 0.855      |
+|    value_loss           | 2.1        |
+----------------------------------------
+
+[INFO] Training evader model...
+
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 13.9     |
+|    ep_rew_mean     | 5.75     |
+| time/              |          |
+|    fps             | 113      |
+|    iterations      | 1        |
+|    time_elapsed    | 17       |
+|    total_timesteps | 2048     |
+---------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 13.5        |
+|    ep_rew_mean          | 5.62        |
+| time/                   |             |
+|    fps                  | 101         |
+|    iterations           | 2           |
+|    time_elapsed         | 40          |
+|    total_timesteps      | 4096        |
+| train/                  |             |
+|    approx_kl            | 0.016571287 |
+|    clip_fraction        | 0.196       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -3.53       |
+|    explained_variance   | 0.741       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.182       |
+|    n_updates            | 210         |
+|    policy_gradient_loss | -0.0391     |
+|    std                  | 0.78        |
+|    value_loss           | 0.498       |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 13.5        |
+|    ep_rew_mean          | 5.6         |
+| time/                   |             |
+|    fps                  | 98          |
+|    iterations           | 3           |
+|    time_elapsed         | 62          |
+|    total_timesteps      | 6144        |
+| train/                  |             |
+|    approx_kl            | 0.020807574 |
+|    clip_fraction        | 0.197       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -3.49       |
+|    explained_variance   | 0.667       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.193       |
+|    n_updates            | 220         |
+|    policy_gradient_loss | -0.0404     |
+|    std                  | 0.767       |
+|    value_loss           | 0.619       |
+-----------------------------------------
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 12.6       |
+|    ep_rew_mean          | 5.29       |
+| time/                   |            |
+|    fps                  | 99         |
+|    iterations           | 4          |
+|    time_elapsed         | 82         |
+|    total_timesteps      | 8192       |
+| train/                  |            |
+|    approx_kl            | 0.01814863 |
+|    clip_fraction        | 0.19       |
+|    clip_range           | 0.2        |
+|    entropy_loss         | -3.44      |
+|    explained_variance   | 0.615      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 0.131      |
+|    n_updates            | 230        |
+|    policy_gradient_loss | -0.036     |
+|    std                  | 0.756      |
+|    value_loss           | 0.641      |
+----------------------------------------
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 13.8       |
+|    ep_rew_mean          | 5.71       |
+| time/                   |            |
+|    fps                  | 101        |
+|    iterations           | 5          |
+|    time_elapsed         | 101        |
+|    total_timesteps      | 10240      |
+| train/                  |            |
+|    approx_kl            | 0.01794862 |
+|    clip_fraction        | 0.193      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | -3.39      |
+|    explained_variance   | 0.596      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 0.203      |
+|    n_updates            | 240        |
+|    policy_gradient_loss | -0.0399    |
+|    std                  | 0.744      |
+|    value_loss           | 0.62       |
+----------------------------------------
+Models saved to results/pursuit-evasion-03.11.2025_00.13.24
+
+[INFO] Evaluating pursuer model...
+
+Mean pursuer reward: 5.106711798906327
+
+[INFO] Evaluating evader model...
+
+Mean evader reward: 6.995528846979141
+[INFO] BaseAviary.__init__() loaded parameters from the drone's .urdf:
+[INFO] m 0.027000, L 0.039700,
+[INFO] ixx 0.000014, iyy 0.000014, izz 0.000022,
+[INFO] kf 0.000000, km 0.000000,
+[INFO] t2w 2.250000, max_speed_kmh 30.000000,
+[INFO] gnd_eff_coeff 11.368590, prop_radius 0.023135,
+[INFO] drag_xy_coeff 0.000001, drag_z_coeff 0.000001,
+[INFO] dw_coeff_1 2267.180000, dw_coeff_2 0.160000, dw_coeff_3 -0.110000
+
+[INFO] Starting visualization with trained policies...
+
+[ERROR] in Logger.log(), invalid data
