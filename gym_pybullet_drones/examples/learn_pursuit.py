@@ -32,7 +32,7 @@ from gym_pybullet_drones.envs.MultiPursuitAviary import MultiPursuitAviary
 from gym_pybullet_drones.utils.utils import sync, str2bool
 from gym_pybullet_drones.utils.enums import ObservationType, ActionType
 
-DEFAULT_GUI = False
+DEFAULT_GUI = True
 DEFAULT_RECORD_VIDEO = True
 DEFAULT_OUTPUT_FOLDER = 'results'
 DEFAULT_COLAB = False
@@ -166,6 +166,10 @@ def run(output_folder=DEFAULT_OUTPUT_FOLDER, gui=DEFAULT_GUI, plot=True,
     
     # Create environments for pursuer and evader training
     print("\n[INFO] Creating training environments...")
+    
+    # Override the episode length in MultiPursuitAviary for training
+    # This will be applied when creating the environments below
+    MultiPursuitAviary.EPISODE_LEN_SEC = 30  # Increase from default 15 to 30 seconds
     
     def make_env_pursuer():
         env = MultiPursuitAviary(obs=DEFAULT_OBS, act=DEFAULT_ACT)
