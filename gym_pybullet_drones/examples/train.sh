@@ -27,7 +27,6 @@ if [ $(python -c 'import torch; print(torch.cuda.is_available())') = "True" ]; t
 fi
 
 # Run the experiment
-python learn_pursuit.py
-
+python learn_pursuit.py --gui=False
 # Cleanup
 conda deactivate

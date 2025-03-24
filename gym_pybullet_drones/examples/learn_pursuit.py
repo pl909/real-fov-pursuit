@@ -33,7 +33,7 @@ from gym_pybullet_drones.utils.utils import sync, str2bool
 from gym_pybullet_drones.utils.enums import ObservationType, ActionType
 
 DEFAULT_GUI = True
-DEFAULT_RECORD_VIDEO = True
+DEFAULT_RECORD_VIDEO = False
 DEFAULT_OUTPUT_FOLDER = 'results'
 DEFAULT_COLAB = False
 
@@ -57,7 +57,7 @@ class PursuitEvasionWrapper(gym.Wrapper):
     by exposing only one agent's observation and reward to the learning algorithm.
     """
     
-    def __init__(self, env, agent_idx=0):
+    def __init__(self, env, agent_idx=0, curriculum_phase=0):
         """Initialize the wrapper.
         
         Parameters
@@ -66,9 +66,12 @@ class PursuitEvasionWrapper(gym.Wrapper):
             The environment to wrap.
         agent_idx : int
             The index of the agent to extract (0=pursuer, 1=evader).
+        curriculum_phase : int
+            The current phase of the curriculum.
         """
         super().__init__(env)
         self.agent_idx = agent_idx
+        self.curriculum_phase = curriculum_phase
         
         # Get a sample observation to determine the actual observation size
         sample_obs, _ = env.reset()
@@ -104,6 +107,13 @@ class PursuitEvasionWrapper(gym.Wrapper):
     
     def reset(self, **kwargs):
         """Reset the environment and return only the selected agent's observation."""
+        # Adjust randomization based on curriculum phase
+        random_distance = min(4.0 + self.curriculum_phase * 0.5, 8.0)
+        
+        # We need to pass this to the underlying environment
+        if hasattr(self.env, 'random_distance'):
+            self.env.random_distance = random_distance
+            
         obs, info = self.env.reset(**kwargs)
         return obs[self.agent_idx], info
     
@@ -134,6 +144,15 @@ class PursuitEvasionWrapper(gym.Wrapper):
         
         # Take the step with full actions
         obs, reward, terminated, truncated, info = self.env.step(full_action)
+        
+        # Debug logging for early termination
+        if terminated[self.agent_idx] or truncated[self.agent_idx]:
+            if self.env.step_counter < 5:  # Early termination
+                states = np.array([self.env._getDroneStateVector(i) for i in range(2)])
+                print(f"[DEBUG] Early termination for agent {self.agent_idx}:")
+                print(f"  - Position: {self.env.pos}")
+                print(f"  - Roll/Pitch: {states[:,7:9]}")
+                print(f"  - Terminated: {terminated}, Truncated: {truncated}")
         
         # Return only the selected agent's perspective
         return obs[self.agent_idx], reward[self.agent_idx], terminated[self.agent_idx], truncated[self.agent_idx], info
@@ -172,20 +191,56 @@ def run(output_folder=DEFAULT_OUTPUT_FOLDER, gui=DEFAULT_GUI, plot=True,
     MultiPursuitAviary.EPISODE_LEN_SEC = 30  # Increase from default 15 to 30 seconds
     
     def make_env_pursuer():
-        env = MultiPursuitAviary(obs=DEFAULT_OBS, act=DEFAULT_ACT)
+        env = MultiPursuitAviary(
+            obs=DEFAULT_OBS, 
+            act=DEFAULT_ACT,
+            random_init=True,
+            min_distance=4.0,
+            max_distance=8.0
+        )
         return PursuitEvasionWrapper(env, agent_idx=0)
     
     def make_env_evader():
-        env = MultiPursuitAviary(obs=DEFAULT_OBS, act=DEFAULT_ACT)
+        env = MultiPursuitAviary(
+            obs=DEFAULT_OBS, 
+            act=DEFAULT_ACT,
+            random_init=True,
+            min_distance=4.0,
+            max_distance=8.0
+        )
         return PursuitEvasionWrapper(env, agent_idx=1)
     
     # Create vectorized environments
     pursuer_env = make_vec_env(make_env_pursuer, n_envs=1, seed=0)
     evader_env = make_vec_env(make_env_evader, n_envs=1, seed=1)
     
-    # Create evaluation environments
-    eval_env_pursuer = PursuitEvasionWrapper(MultiPursuitAviary(obs=DEFAULT_OBS, act=DEFAULT_ACT), agent_idx=0)
-    eval_env_evader = PursuitEvasionWrapper(MultiPursuitAviary(obs=DEFAULT_OBS, act=DEFAULT_ACT), agent_idx=1)
+    # Add these evaluation environments after the training environments
+    eval_scenarios = [
+        # Scenario 1: Default starting positions
+        {"initial_xyzs": np.array([[0.0, 0.0, 0.5], [3.0, 3.0, 0.5]])},
+        # Scenario 2: Medium distance
+        {"initial_xyzs": np.array([[0.0, 0.0, 0.5], [4.0, 0.0, 0.5]])},
+        # Scenario 3: Long distance
+        {"initial_xyzs": np.array([[0.0, 0.0, 0.5], [0.0, 6.0, 0.5]])},
+    ]
+
+    # Create evaluation environments with consistent scenarios
+    eval_envs_pursuer = []
+    eval_envs_evader = []
+
+    for scenario in eval_scenarios:
+        eval_envs_pursuer.append(
+            PursuitEvasionWrapper(
+                MultiPursuitAviary(obs=DEFAULT_OBS, act=DEFAULT_ACT, **scenario), 
+                agent_idx=0
+            )
+        )
+        eval_envs_evader.append(
+            PursuitEvasionWrapper(
+                MultiPursuitAviary(obs=DEFAULT_OBS, act=DEFAULT_ACT, **scenario), 
+                agent_idx=1
+            )
+        )
     
     # Check the environments' spaces
     print('[INFO] Pursuer action space:', pursuer_env.action_space)
@@ -197,27 +252,30 @@ def run(output_folder=DEFAULT_OUTPUT_FOLDER, gui=DEFAULT_GUI, plot=True,
     pursuer_model = PPO('MlpPolicy', 
                        pursuer_env, 
                        verbose=1,
-                       learning_rate=0.0003,       # Lower from 0.0005
-                       n_steps=2048,
+                       learning_rate=0.0001,      # Lower learning rate for stability
+                       n_steps=1024,              # Shorter trajectories
                        batch_size=64,
-                       n_epochs=10,                # Reduce from 15
+                       n_epochs=5,                # Fewer epochs to avoid overfitting
                        gamma=0.99,
                        ent_coef=0.01,
-                       clip_range=0.15,            # Reduce from default 0.2
+                       clip_range=0.1,            # Smaller clip range for stability
                        device=DEVICE,
                        policy_kwargs=dict(
-                           net_arch=[dict(pi=[128, 128], vf=[128, 128])]
+                           net_arch=dict(pi=[128, 128], vf=[128, 128])
                        ))
     
     evader_model = PPO('MlpPolicy', 
                       evader_env, 
                       verbose=1,
-                      learning_rate=0.0003,
-                      n_steps=2048,
+                      learning_rate=0.0001,
+                      n_steps=1024,
                       batch_size=64,
-                      n_epochs=10,
+                      n_epochs=5,
                       gamma=0.99,
-                      device=DEVICE)              # Use GPU if available
+                      device=DEVICE,
+                      policy_kwargs=dict(
+                          net_arch=dict(pi=[128, 128], vf=[128, 128])
+                      ))
     
     # Replace sequential training with alternating phases
     alternating_steps = 10000  # 10K steps per phase
@@ -241,63 +299,12 @@ def run(output_folder=DEFAULT_OUTPUT_FOLDER, gui=DEFAULT_GUI, plot=True,
     
     # Evaluate the models
     print("\n[INFO] Evaluating pursuer model...\n")
-    mean_reward_pursuer, _ = evaluate_policy(pursuer_model, eval_env_pursuer, n_eval_episodes=10)
+    mean_reward_pursuer, _ = evaluate_policy(pursuer_model, eval_envs_pursuer[0], n_eval_episodes=10)
     print(f"Mean pursuer reward: {mean_reward_pursuer}")
     
     print("\n[INFO] Evaluating evader model...\n")
-    mean_reward_evader, _ = evaluate_policy(evader_model, eval_env_evader, n_eval_episodes=10)
+    mean_reward_evader, _ = evaluate_policy(evader_model, eval_envs_evader[0], n_eval_episodes=10)
     print(f"Mean evader reward: {mean_reward_evader}")
-    
-    # Create environment for visualization with trained policies
-    test_env = MultiPursuitAviary(gui=gui, obs=DEFAULT_OBS, act=DEFAULT_ACT, record=record_video)
-    logger = Logger(logging_freq_hz=int(test_env.CTRL_FREQ), num_drones=2, output_folder=output_folder, colab=colab)
-    
-    # Run visualization
-    obs, info = test_env.reset(seed=42, options={})
-    start = time.time()
-    
-    print("\n[INFO] Starting visualization with trained policies...\n")
-    for i in range((test_env.EPISODE_LEN_SEC+2)*test_env.CTRL_FREQ):
-        # Get actions from both policies
-        pursuer_action, _ = pursuer_model.predict(obs[0], deterministic=True)
-        evader_action, _ = evader_model.predict(obs[1], deterministic=True)
-        
-        # Combine actions and step the environment
-        action = np.array([pursuer_action, evader_action])
-        obs, reward, terminated, truncated, info = test_env.step(action)
-        
-        # Log data
-        if DEFAULT_OBS == ObservationType.KIN:
-            for d in range(2):
-                logger.log(drone=d,
-                           timestamp=i/test_env.CTRL_FREQ,
-                           state=np.hstack([obs[d][0:3],
-                                            np.zeros(4),
-                                            obs[d][3:12],
-                                            action[d]]),
-                           control=np.zeros(12))
-        
-        # Render
-        test_env.render()
-        
-        # Print some information
-        distance = np.linalg.norm(test_env.pos[0] - test_env.pos[1])
-        print(f"Step {i}: Distance: {distance:.2f}, Pursuer reward: {reward[0]:.2f}, Evader reward: {reward[1]:.2f}")
-        
-        # Maintain the desired frequency
-        sync(i, start, test_env.CTRL_TIMESTEP)
-        
-        # Reset if episode termination
-        if terminated[0] or truncated[0]:  # If any agent terminates
-            print("\n[INFO] Episode terminated, resetting...\n")
-            obs, info = test_env.reset(seed=42, options={})
-    
-    # Close the environment
-    test_env.close()
-    
-    # Plot if requested
-    if plot and DEFAULT_OBS == ObservationType.KIN:
-        logger.plot()
 
 if __name__ == '__main__':
     # Parse arguments

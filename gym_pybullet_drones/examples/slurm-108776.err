@@ -1,0 +1,19 @@
+pybullet build time: Jan 29 2025 23:16:28
+Traceback (most recent call last):
+  File "/home/pl217/real-fov-pursuit/gym_pybullet_drones/examples/learn_pursuit.py", line 322, in <module>
+    run(**vars(ARGS))
+  File "/home/pl217/real-fov-pursuit/gym_pybullet_drones/examples/learn_pursuit.py", line 214, in run
+    pursuer_env = make_vec_env(make_env_pursuer, n_envs=1, seed=0)
+  File "/home/pl217/miniconda3/envs/drones/lib/python3.10/site-packages/stable_baselines3/common/env_util.py", line 125, in make_vec_env
+    vec_env = vec_env_cls([make_env(i + start_index) for i in range(n_envs)], **vec_env_kwargs)
+  File "/home/pl217/miniconda3/envs/drones/lib/python3.10/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 31, in __init__
+    self.envs = [_patch_env(fn()) for fn in env_fns]
+  File "/home/pl217/miniconda3/envs/drones/lib/python3.10/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 31, in <listcomp>
+    self.envs = [_patch_env(fn()) for fn in env_fns]
+  File "/home/pl217/miniconda3/envs/drones/lib/python3.10/site-packages/stable_baselines3/common/env_util.py", line 98, in _init
+    env = env_id(**env_kwargs)
+  File "/home/pl217/real-fov-pursuit/gym_pybullet_drones/examples/learn_pursuit.py", line 194, in make_env_pursuer
+    env = MultiPursuitAviary(
+  File "/zpool-00/home/pl217/real-fov-pursuit/gym_pybullet_drones/envs/MultiPursuitAviary.py", line 80, in __init__
+    arena_limit = self.ARENA_SIZE * 0.7  # More conservative
+AttributeError: 'MultiPursuitAviary' object has no attribute 'ARENA_SIZE'

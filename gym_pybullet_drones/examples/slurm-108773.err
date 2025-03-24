@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/pl217/real-fov-pursuit/gym_pybullet_drones/examples/learn_pursuit.py", line 30, in <module>
+    from gym_pybullet_drones.utils.Logger import Logger
+ModuleNotFoundError: No module named 'gym_pybullet_drones'
