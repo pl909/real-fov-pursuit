@@ -7,7 +7,8 @@ SEE python learn_pursuit.py in Reinforcement learning examples.
 ## Installation
 
 ```sh
-git clone https://github.com/utiasDSL/gym-pybullet-drones.git
+[git clone https://github.com/utiasDSL/gym-pybullet-drones.git
+](https://github.com/pl909/real-fov-pursuit.git)
 cd gym-pybullet-drones/
 
 conda create -n drones python=3.10
